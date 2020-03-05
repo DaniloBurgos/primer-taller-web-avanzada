@@ -1,6 +1,9 @@
 import React from 'react';
 import CardNumber from "../CardNumber/CardNumber";
+import CardHolders from "../CardHolders/CardHolders";
 import './App.css';
+import ExpirationDate from '../ExpirationDate/ExpirationDate';
+import CVV from '../CVV/CVV';
 
 function App() {
 
@@ -13,12 +16,38 @@ function App() {
   arreglo[1](10);
 */
 
-  const [ datos, setDatos ] = React.useState([]);
+  const [ datos, setDatos ] = React.useState("");
+
+  const handleCardNumberChange = (newText) => {
+    setDatos(newText);
+  }
+
 
   return (
     <div className="App">
 
-      <CardNumber />
+    <p>{datos}</p>
+
+    <form className="creditForm">
+      <CardNumber
+            onTextChange={handleCardNumberChange}
+            value={datos}/>
+      <CardHolders />
+      <div className="innerForm">
+
+
+      <ExpirationDate />
+      <CVV/>
+
+      </div>
+
+      <button>
+        Submit
+      </button>
+
+    </form>
+
+
 
     </div>
   );
